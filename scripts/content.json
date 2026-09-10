@@ -1,0 +1,255 @@
+{
+  "name": "Haiyue (Heady) Zhang",
+  "role": "AI Systems & Infrastructure Engineer",
+  "description": "I turn ambiguous operational problems into deployed software, auditable AI workflows, and measurable systems.",
+  "email": "haiyuez@usc.edu",
+  "github": "https://github.com/HeadyZhang",
+  "linkedin": "https://www.linkedin.com/in/haiyue-zhang",
+  "availability": "May 2027",
+  "projects": [
+    {
+      "slug": "causalops",
+      "name": "CausalOps",
+      "subtitle": "Auditable AI decision & rollout workflows",
+      "category": "01 / Workflow infrastructure",
+      "summary": "An AI proposal should be reviewable before it can become an action. I led the architecture and AI-assisted implementation of a prototype that turns business actions and operating constraints into evidence-linked experiment proposals and rollout contracts.",
+      "proof": "Typed claims and dependency checks separate model suggestions from execution authority. Immutable lifecycle records, storage boundaries, signed approvals, and targeted mutation tests make critical gates inspectable.",
+      "chips": [
+        "Typed evidence",
+        "Dependency authority",
+        "Signed execution",
+        "Mutation-tested gates"
+      ],
+      "status": "Research-engineering prototype",
+      "status_detail": "Research-engineering prototype. Core workflow and authorization mechanisms have frozen test/review evidence; production scale and external product value remain unvalidated. A later provider run ended in an execution-integrity failure and was not evaluable.",
+      "ownership": "Independent project lead · AI-assisted implementation",
+      "period": "2026",
+      "stack": "Python · typed contracts · state machines · Ed25519",
+      "deck": "Let models propose judgments; let deterministic code decide authority.",
+      "links": [],
+      "sections": [
+        {
+          "id": "problem",
+          "title": "The problem",
+          "html": "<p>A business action arrives with incomplete evidence, operating constraints, and assumptions that may need a human decision. A plausible model response does not tell an operator whether the proposed experiment is supported, whether its dependencies are valid, or whether anyone authorized execution.</p><p>I built CausalOps to turn that ambiguity into reviewable artifacts: typed claims, candidate designs, evidence links, and explicit rollout conditions. The goal is to make the route from suggestion to action inspectable.</p>"
+        },
+        {
+          "id": "difficulty",
+          "title": "Why this is technically hard",
+          "html": "<p>Models can mix a supported observation with an unsupported conclusion in the same response. Rejecting the entire draft loses useful material; accepting it wholesale can promote unverified text into an execution decision.</p><p>Authority also crosses several boundaries: parsing, dependency resolution, contract compilation, storage, and approval. A check in the command-line interface is insufficient if a caller can reach a lower-level write or execution path directly.</p>"
+        },
+        {
+          "id": "architecture",
+          "title": "System architecture",
+          "html": "<div class=\"flow\" role=\"img\" aria-label=\"Business inputs become model-proposed claims, then undergo deterministic checks before human approval and a signed execution gate.\"><div><span>01 / Input</span>Action & constraints<small>Evidence and operating context</small></div><div><span>02 / Propose</span>Typed claims<small>Model suggestions and candidates</small></div><div><span>03 / Verify</span>Authority checks<small>Evidence, dependencies, contract</small></div><div><span>04 / Authorize</span>Signed gate<small>Human approval bound to execution</small></div></div><p>The semantic proposal is a separate artifact from the deterministic decision. Claims and candidates retain provenance; dependency edges express what a candidate relies on. Lifecycle records preserve how an artifact moved through review, while execution approvals bind the authorized run to its configuration.</p>"
+        },
+        {
+          "id": "decisions",
+          "title": "Three design decisions",
+          "html": "<h3>01 — Keep semantic proposals separate from authority</h3><p>Model-generated claims enter a typed review path. Deterministic checks decide which evidence and dependencies can support a candidate. An unresolved assumption remains a reason for human validation; it does not silently become an executable fact.</p><h3>02 — Enforce integrity at the storage boundary</h3><p>Content-addressed artifacts, append-only lifecycle events, and exclusive-create writes preserve prior records. Storage checks require artifact-kind and confidentiality classifications, so callers cannot bypass the boundary by avoiding the CLI.</p><h3>03 — Bind approval to what will actually run</h3><p>Ed25519 approvals bind execution identity, model configuration, budgets, and relevant artifact hashes. The execution path verifies the approval; it cannot sign its own authorization. Dependency-manifest checks protect against approving one configuration and running another.</p>"
+        },
+        {
+          "id": "verification",
+          "title": "Verification evidence",
+          "html": "<div class=\"case-evidence\"><div><strong>13 / 13</strong><span>Targeted mutations detected in one frozen offline gate-verification milestone.</span></div><div><strong>152</strong><span>Focused tests passed for the standalone expert-case intake validator in a separate milestone.</span></div></div><p>The mutation campaign deliberately changed authority classification, retry behavior, manifest membership, and fixture or approval checks. Each changed implementation caused a behavioral test failure after a clean baseline. These results cover the selected gates, not every possible failure mode.</p><p>The separate intake-validator tests exercised envelope agreement, partitions, deterministic hashes, write-once sealing, and post-seal modification detection using fictional temporary data. This is a validator-specific count, not a cumulative project test total.</p><p>Both summaries come from frozen local records reviewed for this portfolio. Internal reports and private source material are not published here.</p>"
+        },
+        {
+          "id": "incident",
+          "title": "When execution evidence was incomplete",
+          "html": "<p>A later signed provider run recorded a semantic submission as attempted but persisted no provider response. That did not establish whether a request reached the provider. The run ended in an execution-integrity failure and was classified as <strong>not evaluable</strong>.</p><p>I kept the incident record and retired the affected confirmatory cases. The response was to stop further harness work and move toward independently acquired expert cases, rather than describe the offline gate results as a successful provider evaluation.</p><blockquote>An authorization record is not proof of completed execution. Missing evidence must remain an explicit unknown.</blockquote><p>The incident changed the project's validation plan and narrowed what its implementation evidence could support. It did not demonstrate external product value or expert-level decision quality.</p>"
+        },
+        {
+          "id": "scope",
+          "title": "What this project proves—and what is open",
+          "html": "<p>It demonstrates my approach to typed workflow design, deterministic authorization, storage integrity, and tests that challenge critical gates. It also demonstrates the engineering judgment to preserve an adverse result and stop when the evidence no longer supports progress.</p><p><strong>Still unvalidated:</strong> production scale, provider operational readiness, expert-level decision quality, customer adoption, and external product value. The next scientific step is blind expert-case acquisition with a separately frozen evaluation protocol.</p>"
+        },
+        {
+          "id": "ownership",
+          "title": "Ownership & AI-assisted engineering",
+          "html": "<p>I led the architecture, contract and boundary design, acceptance criteria, and review of the evidence. Implementation was AI-assisted. My ownership includes choosing the mechanisms, investigating review findings, evaluating proposed changes, and deciding which conclusions the artifacts support.</p><p>This case study is a public technical summary. It makes no claim that the system has been deployed to customers.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "topify",
+      "name": "Topify.ai",
+      "subtitle": "B2B AI marketing workflow platform",
+      "category": "02 / Customer → product",
+      "summary": "I worked directly with B2B customers to turn real GEO and marketing workflows into reusable product capabilities, owning requirements, workflow design, implementation, integrations, and Railway deployment.",
+      "proof": "30+ API integrations. Hybrid retrieval over 100k+ chunks, with recorded retrieval latency under two seconds.",
+      "chips": [],
+      "status": "Delivered B2B platform · Nov 2025–Jan 2026",
+      "status_detail": "Commercial work completed November 2025–January 2026. Architecture is summarized at a public, non-confidential level. Recorded retrieval figures describe that implementation, not a current service guarantee.",
+      "ownership": "Co-Founder & Software Engineer",
+      "period": "Nov 2025–Jan 2026",
+      "stack": "Hybrid retrieval · API integrations · Railway",
+      "deck": "From customer conversations to a deployed AI-powered SEO and generative engine optimization platform.",
+      "links": [
+        {
+          "label": "Live",
+          "url": "https://topify.ai/"
+        }
+      ],
+      "sections": [
+        {
+          "id": "problem",
+          "title": "Start with the customer's workflow",
+          "html": "<p>B2B marketing work spans information gathering, analysis, and repeated actions across tools. Adding a model call does not resolve that fragmentation. The product challenge was to translate real SEO and generative engine optimization (GEO) workflows into software that customers could use repeatedly.</p><p>I worked directly with customers to scope requirements and turn their operating needs into reusable platform capabilities, then owned implementation and deployment.</p>"
+        },
+        {
+          "id": "architecture",
+          "title": "System architecture",
+          "html": "<div class=\"flow\" role=\"img\" aria-label=\"Customer workflows use API integrations and hybrid retrieval to supply LLM workflows in the deployed platform.\"><div><span>01 / Workflow</span>Customer requirements<small>Reusable marketing capabilities</small></div><div><span>02 / Integrate</span>30+ APIs<small>Connected information sources</small></div><div><span>03 / Retrieve</span>Hybrid search<small>BGE-M3 + BM25 + RRF</small></div><div><span>04 / Deliver</span>LLM workflows<small>Railway deployment</small></div></div><p>The platform combined API integrations with hybrid retrieval. BGE-M3 supplied embedding-based retrieval, BM25 supplied lexical matching, and reciprocal rank fusion combined the ranked results before they were used in the LLM workflow.</p><p>This gave the application a retrieval layer that could use both semantic similarity and exact terminology. The system was deployed on Railway as part of my end-to-end delivery responsibility.</p>"
+        },
+        {
+          "id": "ownership",
+          "title": "End-to-end ownership",
+          "html": "<h3>Translate requirements into reusable capabilities</h3><p>My role connected customer discovery with workflow design and implementation. The unit of delivery was a usable marketing capability within the platform, with integrations and retrieval supporting the customer task.</p><h3>Connect the application to its information sources</h3><p>I built LLM workflows integrating more than 30 APIs and a hybrid retrieval layer over more than 100,000 chunks. That work required coordinating the application workflow with the information available to it.</p><h3>Carry the system through deployment</h3><p>I owned Railway deployment alongside implementation. This experience links customer-facing product decisions with the practical work of getting the system running.</p>"
+        },
+        {
+          "id": "evidence",
+          "title": "Delivery evidence & constraints",
+          "html": "<div class=\"case-evidence\"><div><strong>30+</strong><span>API integrations in the delivered workflow platform.</span></div><div><strong>100k+</strong><span>Chunks in the hybrid retrieval corpus.</span></div></div><p>Retrieval latency was recorded under two seconds. That figure is scoped to retrieval in this implementation; it is not an end-to-end LLM response time, a p95 measurement, or an uptime commitment.</p><p>The public summary does not include customer records, commercial source code, revenue figures, or confidential product materials. The Live link points to the current public product site. This case study describes my work during November 2025–January 2026; it does not attribute subsequent product changes to me.</p>"
+        },
+        {
+          "id": "takeaway",
+          "title": "What I bring to the next system",
+          "html": "<p>This work demonstrates customer-facing requirements discovery, product translation, integration engineering, retrieval implementation, and deployment ownership. It is the part of my background where the problem definition and the software delivery lived in the same role.</p><p>I carry that connection into infrastructure work: understand the operating need, define the workflow, and follow it through to the running system.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "agent-audit",
+      "name": "agent-audit + Argus",
+      "subtitle": "From open-source detection to client security evidence",
+      "category": "03 / Security engineering",
+      "summary": "I built an open-source static analyzer for LLM agent applications, then directly scoped and delivered third-party security assessments through Argus, including a production healthcare RAG agent.",
+      "proof": "51 built-in OWASP-aligned YAML detection rules with CI/CD and rule-level regression tests. Audit reports addressed buyer-side CISO requirements in B2B procurement reviews.",
+      "chips": [],
+      "status": "Open source · Argus: Feb 2026–Aug 2026",
+      "status_detail": "agent-audit is open source. Argus Security operated February–August 2026; client identities, findings, and reports remain confidential. The associated paper is linked as an arXiv preprint.",
+      "ownership": "agent-audit builder · Argus Founder & CEO",
+      "period": "2026 · Argus: Feb–Aug",
+      "stack": "Static analysis · OWASP threat modeling · CI/CD",
+      "deck": "Connect a code-level finding to the evidence a security reviewer can actually use.",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/HeadyZhang/agent-audit"
+        },
+        {
+          "label": "Paper",
+          "url": "https://arxiv.org/abs/2603.22853"
+        }
+      ],
+      "sections": [
+        {
+          "id": "problem",
+          "title": "The gap between detection and a decision",
+          "html": "<p>LLM agent applications connect model outputs to tools, credentials, and deployment configuration. Reviewing only the model misses risks in the surrounding software. Developers need findings tied to code or configuration; security buyers need a scoped assessment they can review.</p><p>agent-audit and Argus address different parts of that workflow: the open-source tool supports repeatable detection, while the assessment work turns technical investigation into client-specific security evidence.</p>"
+        },
+        {
+          "id": "architecture",
+          "title": "From source to reviewable findings",
+          "html": "<div class=\"flow\" role=\"img\" aria-label=\"Source and configuration pass through static analysis and rule checks to findings exported for development and security review.\"><div><span>01 / Inspect</span>Code & config<small>Agent tools and MCP settings</small></div><div><span>02 / Analyze</span>Static analysis<small>Dataflow and credential checks</small></div><div><span>03 / Report</span>Located findings<small>Terminal, JSON, SARIF</small></div><div><span>04 / Review</span>Security evidence<small>CI and human assessment</small></div></div><p>agent-audit analyzes agent code and deployment artifacts for risks such as untrusted data reaching dangerous operations, exposed credentials, and excessive permissions. Findings link back to source locations or configuration paths and can be exported into development workflows.</p><p>CI/CD integration and rule-level regression tests make detection changes reviewable over time. A scanner result remains an input to an assessment; it does not by itself certify that an application is secure.</p>"
+        },
+        {
+          "id": "measurement",
+          "title": "Keep the rule count honest",
+          "html": "<div class=\"case-evidence\"><div><strong>51</strong><span>Built-in YAML detection rules in the verified rule-set snapshot.</span></div><div><strong>200+</strong><span>GitHub stars; 228 verified on September 10, 2026.</span></div></div><p>The number 51 refers to unique built-in YAML rule IDs loaded by the rule engine in the verified snapshot. It is not a count of every runtime-emittable finding type or an optional profile's rules. Those surfaces have different definitions and change over time.</p><p>A receiver-type false positive also exposed the need for discriminating tests: after correcting the misclassification, I checked the intended true-positive behavior with a control. Removing an unwanted finding is insufficient if the same change suppresses the vulnerability the rule is supposed to detect.</p>"
+        },
+        {
+          "id": "argus",
+          "title": "Argus: direct client delivery",
+          "html": "<p>As Founder & CEO of Argus Security from February to August 2026, I directly scoped client requirements and delivered third-party AI-agent security audit reports. Those reports were used to address buyer-side CISO requirements during B2B procurement reviews.</p><p>The work included an OWASP-aligned assessment of a production healthcare RAG agent. It connected static analysis and threat modeling to a real deployed application, while requiring a clear separation between tool findings, analyst judgment, and the scope of the report.</p><p>Client names, confidential findings, and procurement documents are intentionally excluded. This portfolio makes no claim that an assessment alone guaranteed a secure deployment or completed a sale.</p>"
+        },
+        {
+          "id": "research",
+          "title": "Public engineering & research",
+          "html": "<p>The source repository and the first-author paper, <em>Agent Audit: A Security Analysis System for LLM Agent Applications</em>, provide public evidence of the analysis approach and developer workflow.</p><p>The paper describes a specific evaluation snapshot. Its benchmark results should not be conflated with later repository measurements or the outcome of a client assessment. The transferable work is the connection between detection engineering, measurement discipline, and security communication.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "gpu-systems",
+      "name": "GPU systems & evaluation",
+      "subtitle": "Training, rollout inference & root-cause debugging",
+      "category": "04 / Research engineering",
+      "summary": "At USC FORTIS Lab, I reproduced ToolRL with GRPO/veRL and diagnosed an upstream prompt-builder evaluation bug. My research workflows include vLLM rollout inference on an NVIDIA A100 80GB.",
+      "proof": "PyTorch and DeepSpeed training experience, GPU-memory configuration, and checksum-verified local model staging to address network-storage failures.",
+      "chips": [],
+      "status": "Research workflows · FORTIS Lab, USC",
+      "status_detail": "Lab and independent research workflows. This experience covers training, rollout inference, evaluation, and debugging; production GPU fleet ownership is not claimed.",
+      "ownership": "Graduate researcher · Independent research workflows",
+      "period": "FORTIS Lab: 2025–Present",
+      "stack": "PyTorch · DeepSpeed · veRL · vLLM · Linux",
+      "deck": "Make the training and evaluation path trustworthy enough to learn from its results.",
+      "links": [],
+      "sections": [
+        {
+          "id": "problem",
+          "title": "A reproduction is a systems problem",
+          "html": "<p>Reproducing an agent-training result means getting several layers to agree: the model, prompt construction, rollout inference, training configuration, and evaluation. A pipeline can finish without measuring the behavior the researcher intended.</p><p>At USC FORTIS Lab, I reproduced ToolRL with GRPO and veRL on the lab GPU cluster. The work included diagnosing and fixing an upstream prompt-builder evaluation bug.</p>"
+        },
+        {
+          "id": "workflow",
+          "title": "Training & rollout inference",
+          "html": "<div class=\"flow\" role=\"img\" aria-label=\"Verify model files, configure GPU training, generate rollouts, and inspect evaluation behavior.\"><div><span>01 / Stage</span>Model files<small>Local checksum verification</small></div><div><span>02 / Configure</span>GPU workflow<small>Memory and loading settings</small></div><div><span>03 / Run</span>veRL + vLLM<small>Research rollout inference</small></div><div><span>04 / Inspect</span>Evaluation<small>Prompt path and output behavior</small></div></div><p>My research setup included veRL with vLLM rollout inference on an NVIDIA A100 80GB, with explicit GPU-memory limits and model-loading configuration. My broader training experience includes PyTorch and DeepSpeed, including DeepSpeed distributed training during my PDD internship.</p><p>These are research training and inference workflows. They support a concrete account of getting a model pipeline running and debugging it, without implying ownership of a production inference service or GPU fleet.</p>"
+        },
+        {
+          "id": "debugging",
+          "title": "Two debugging lessons",
+          "html": "<h3>Trace the prompt that evaluation actually uses</h3><p>The ToolRL reproduction surfaced an upstream prompt-builder evaluation bug. I diagnosed and fixed the prompt-construction path. The practical lesson is to inspect the inputs reaching the model before attributing an evaluation result to the training method.</p><h3>Separate model failures from storage failures</h3><p>Network-storage failures also affected model staging. I used checksum-verified local model staging to establish the identity of the files being loaded and address that failure path. Model-loading reliability is part of whether a research run can produce interpretable evidence.</p>"
+        },
+        {
+          "id": "scope",
+          "title": "Evidence & scope",
+          "html": "<p>This account is supported by my verified current resume. It does not add an unverified throughput gain, benchmark score, or production availability metric.</p><p>An exact public artifact URL for these runs was not established during the portfolio review, so no artifact-download link is presented. The case study stands on the specific workflow, hardware, and debugging responsibilities described here.</p>"
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "dates": "2025–Present",
+      "organization": "FORTIS Lab, USC",
+      "role": "Graduate Researcher",
+      "detail": "Reproduced ToolRL with GRPO/veRL on the lab GPU cluster; diagnosed and fixed an upstream prompt-builder evaluation bug."
+    },
+    {
+      "dates": "Feb 2026–Aug 2026",
+      "organization": "Argus Security",
+      "role": "Founder & CEO",
+      "detail": "Directly scoped client requirements and delivered AI-agent security assessments for buyer-side CISO and procurement reviews."
+    },
+    {
+      "dates": "Nov 2025–Jan 2026",
+      "organization": "Topify.ai",
+      "role": "Co-Founder & Software Engineer",
+      "detail": "Translated B2B customer workflows into an AI marketing platform; owned implementation, integrations, and Railway deployment."
+    },
+    {
+      "dates": "May 2025–Aug 2025",
+      "organization": "PDD (Pinduoduo)",
+      "role": "Algorithm Engineer Intern",
+      "detail": "Worked on LLM-based intent understanding and fine-tuned a BERT quality detector using DeepSpeed distributed training."
+    }
+  ],
+  "research": [
+    {
+      "title": "Agent Audit: A Security Analysis System for LLM Agent Applications",
+      "url": "https://arxiv.org/abs/2603.22853",
+      "meta": "First author · Haiyue Zhang, Yi Nian, Yue Zhao · arXiv, 2026"
+    },
+    {
+      "title": "Auditable Agents",
+      "url": "https://arxiv.org/abs/2604.05485",
+      "meta": "Co-author · Extended arXiv version, August 2026"
+    },
+    {
+      "title": "Sovereign-OS: A Charter-Governed Operating System for Autonomous AI Agents with Verifiable Fiscal Discipline",
+      "url": "https://arxiv.org/abs/2603.14011",
+      "meta": "Co-author · arXiv demo paper, 2026"
+    }
+  ]
+}

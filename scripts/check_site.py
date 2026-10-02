@@ -46,7 +46,7 @@ for path, page in pages.items():
     assert page.canonical == 1, f'Canonical: {path}'
     assert all(b <= a + 1 for a, b in zip(page.headings, page.headings[1:])), f'Heading order: {path}'
     text = path.read_text()
-    for forbidden in [r'/Users/', r'/private/', r'(?i)\bTODO\b', r'(?i)\bplaceholder\b', r'\+1[ -]?213', r'(?i)building Argus', r'(?i)globally unique', r'(?i)production-grade', r'(?i)industrial-grade', r'(?i)85\+ rules', r'(?i)Java(?:[ ,<])']:
+    for forbidden in [r'/Users/', r'/private/', r'(?i)\bTODO\b', r'(?i)\bplaceholder\b', r'\+1[ -]?213', r'(?i)building Argus', r'(?i)globally unique', r'(?i)production-grade', r'(?i)industrial-grade', r'(?i)85\+ rules', r'(?i)72 rules', r'(?i)51 rules', r'(?i)zero downtime', r'(?i)100% (?:production )?availability', r'(?i)faster than PyTorch', r'(?i)Founder &(?:amp;)? CEO', r'(?i)Co-Founder', r'(?i)Java(?:[ ,<])']:
         assert not re.search(forbidden, text), f'Forbidden content {forbidden}: {path}'
     ld = re.search(r'<script type="application/ld\+json">(.*?)</script>', text).group(1)
     assert json.loads(ld)['@type'] == 'Person'
